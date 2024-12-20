@@ -1,0 +1,56 @@
+<h1>hello</h1>
+<div class="container">
+  <div class="row g-3"> 
+    <div class="col-6 col-md-4">
+      <div class="border ratio ratio-1x1">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          + new
+        </button>
+      </div>
+    </div>
+    
+    <% @activities.each do |activity| %>
+      <div class="col-6 col-md-4">
+        <div class="border ratio ratio-1x1">
+          <div class="d-flex flex-column">
+            <%= link_to select_time_activity_path(activity.id), class:"flex-grow-1" do %>
+              <%= activity.name %>
+              <i class="bi bi-<%= activity.icon %>"></i>
+            <% end %>
+            <%= button_to "delete" , activity_path(activity.id) , method: :delete , class:"w-100 btn btn-danger" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+ <%= form_with model: Activity.new , url: activities_path do |form| %>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <%= form.label :name %>
+            <%= form.text_field :name %>
+            <div class="mt-5">
+              <%= form.label :icon %>
+              <%= form.text_field :icon %>
+            </div>  
+        </div>
+        <div class="modal-footer">
+          <%= form.submit %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<div class="fixed-bottom">
+  <%= link_to "log" , log_path , class: "btn w-100 btn-primary p-5" %>
+</div>

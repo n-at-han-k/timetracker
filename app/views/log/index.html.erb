@@ -1,0 +1,16 @@
+<%# @log_data.inspect %>
+<% @log_data.each do |date, ids| %>
+  <h3><%= date %></h3>
+  <% ids.each do |id, logs| %>
+    <p>
+      <%= logs.first.activity.name %><br>
+      <%= logs.sum{|a| a.duration} %>
+      <%= logs.map{|a| a.duration} %>
+
+    </p>
+  <% end %>
+<% end %>
+
+<div class="fixed-bottom">
+  <%= link_to "activitys" , activities_path , class: "btn w-100 btn-primary p-5" %>
+</div>
