@@ -1,4 +1,6 @@
-// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
+window.process = { env: { NODE_ENV: 'production'} }
+
 import "@hotwired/turbo-rails"
 import "controllers"
-import * as bootstrap from "bootstrap"
+import "@popperjs/core"
+import 'bootstrap'
